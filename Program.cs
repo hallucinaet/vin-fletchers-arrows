@@ -12,40 +12,61 @@ Arrow GetArrow()
 
 Arrowhead GetArrowheadType()
 {
-    Console.Write("Choose the arrowhead type (steel, wood, obsidian): ");
-
-    return Console.ReadLine() switch
+    while (true)
     {
-        "steel" => Arrowhead.Steel,
-        "wood" => Arrowhead.Wood,
-        "obsidian" => Arrowhead.Obsidian,
-    };
+        Console.Write("Choose the arrowhead type - (1) Steel | (2) Wood | (3) Obsidian ");
+        int option = Convert.ToInt32(Console.ReadLine());
+        
+        if (option >=1 && option <= 3)
+        {
+            return option switch
+            {
+                1 => Arrowhead.Steel,
+                2 => Arrowhead.Wood,
+                3 => Arrowhead.Obsidian
+            };
+        }
+    }
 }
 
 Fletching GetFletchingType()
 {
-    Console.Write("Choose the fletching type (plastic, turkey feathers, goose feathers): ");
-
-    return Console.ReadLine() switch
+    while (true)
     {
-        "plastic" => Fletching.Plastic,
-        "turkey feathers" => Fletching.TurkeyFeathers,
-        "goose feathers" => Fletching.GooseFeathers,
-    };
+        Console.Write("Choose the fletching type - (1) Plastic | (2) Turkey feathers | (3) Goose feathers ");
+        int option = Convert.ToInt32(Console.ReadLine());
+
+        if (option >= 1 && option <= 3)
+        {
+            return option switch
+            {
+                1 => Fletching.Plastic,
+                2 => Fletching.TurkeyFeathers,
+                3 => Fletching.GooseFeathers
+            };
+        }
+    }
 }
 
 float GetLength()
 {
-    Console.Write("Choose the length (60 to 100 cm): ");
+    while (true)
+    {
+        Console.Write("Choose the length (60 to 100 cm): ");
+        int option = Convert.ToInt32(Console.ReadLine());
 
-    return Convert.ToInt32(Console.ReadLine());
+        if (option >= 60 && option <= 100)
+        {
+            return option;
+        }
+    }
 }
 
 class Arrow
 {
     public Arrowhead _arrowhead;
     public Fletching _fletching;
-    public float _length;
+    public float _length; // Length in centimeters
 
 
     public Arrow(Arrowhead arrowhead, Fletching fletching, float length)
@@ -61,14 +82,14 @@ class Arrow
         {
             Arrowhead.Steel => 10,
             Arrowhead.Wood => 3,
-            Arrowhead.Obsidian => 5,
+            Arrowhead.Obsidian => 5
         };
 
         float fletchingCost = _fletching switch
         {
             Fletching.Plastic => 10,
             Fletching.TurkeyFeathers => 5,
-            Fletching.GooseFeathers => 3,
+            Fletching.GooseFeathers => 3
         };
 
         float lengthCost = _length * 0.05f;
