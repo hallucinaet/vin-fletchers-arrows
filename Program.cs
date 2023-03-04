@@ -62,12 +62,15 @@ float GetLength()
     }
 }
 
-class Arrow
+public class Arrow
 {
-    public Arrowhead _arrowhead;
-    public Fletching _fletching;
-    public float _length; // Length in centimeters
+    private Arrowhead _arrowhead;
+    private Fletching _fletching;
+    private float _length; // Length in centimeters
 
+    public Arrowhead GetArrowhead() => _arrowhead;
+    public Fletching GetFletching() => _fletching;
+    public float GetLength() => _length;
 
     public Arrow(Arrowhead arrowhead, Fletching fletching, float length)
     {
@@ -98,14 +101,14 @@ class Arrow
     }
 }
 
-enum Arrowhead
+public enum Arrowhead
 {
     Steel,
     Wood,
     Obsidian
 }
 
-enum Fletching
+public enum Fletching
 {
     Plastic,
     TurkeyFeathers,
