@@ -64,53 +64,38 @@ float GetLength()
 
 public class Arrow
 {
-    private Arrowhead _arrowhead;
-    private Fletching _fletching;
-    private float _length; // Length in centimeters
-
-    public Arrowhead GetArrowhead() => _arrowhead;
-    public Fletching GetFletching() => _fletching;
-    public float GetLength() => _length;
+    public Arrowhead Arrowhead { get; }
+    public Fletching Fletching { get; }
+    public float Length { get; } // Length in centimeters
 
     public Arrow(Arrowhead arrowhead, Fletching fletching, float length)
     {
-        _arrowhead = arrowhead;
-        _fletching = fletching;
-        _length = length;
+        Arrowhead = arrowhead;
+        Fletching = fletching;
+        Length = length;
     }
 
     public float GetCost()
     {
-        float arrowheadCost = _arrowhead switch
+        float arrowheadCost = Arrowhead switch
         {
             Arrowhead.Steel => 10,
             Arrowhead.Wood => 3,
             Arrowhead.Obsidian => 5
         };
 
-        float fletchingCost = _fletching switch
+        float fletchingCost = Fletching switch
         {
             Fletching.Plastic => 10,
             Fletching.TurkeyFeathers => 5,
             Fletching.GooseFeathers => 3
         };
 
-        float lengthCost = _length * 0.05f;
+        float lengthCost = Length * 0.05f;
 
         return arrowheadCost + fletchingCost + lengthCost;
     }
 }
 
-public enum Arrowhead
-{
-    Steel,
-    Wood,
-    Obsidian
-}
-
-public enum Fletching
-{
-    Plastic,
-    TurkeyFeathers,
-    GooseFeathers
-}
+public enum Arrowhead { Steel, Wood, Obsidian }
+public enum Fletching { Plastic, TurkeyFeathers, GooseFeathers }
